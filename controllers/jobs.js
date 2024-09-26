@@ -121,9 +121,12 @@ const deleteJob = async (req, res) => {
  * * Important method as it uses aggrgation pipelines, to format data.
  */
 const showStats = async (req, res) => {
-  // part 1
   let stats = await Job.aggregate([
+
+    // Stage 1, Filter by User.
     { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
+
+    // Stage 2, Group by Status and Count each item with weight 1.
     { $group: { _id: '$status', count: { $sum: 1 } } },
   ]);
 
