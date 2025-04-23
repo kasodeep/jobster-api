@@ -15,7 +15,7 @@ async function runAggregation() {
     // 3. $sort - Sorts by total revenue in descending order
     { $sort: { totalRevenue: -1 } },
 
-    // 4. $limit - Returns only top 2 records
+    // 4. $limit - Returns only top 2 records.
     { $limit: 2 },
 
     // 5. $group - Groups by category and calculates total revenue per category
